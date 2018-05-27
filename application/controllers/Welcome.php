@@ -8,22 +8,85 @@ class Welcome extends CI_Controller {
                 parent::__construct();
                 // Your own constructor code
                  $this->load->model('report');
+								 $this->load->helper(array('form', 'url'));
+								 $this->load->library('form_validation');
         }
 
 
 
 	public function index()
 	{
-		//$this->load->view('dashboard');``
-		$this->data();
+		// $this->load->view('login');
+		$this->login();
 	}
+	public function login()
+	{
+
+		// $this->load->view('login');
+		// $this->data();
+		if ($this->session->userdata('currently_logged_in'))
+				 {
+			$this->data();
+		}
+			else {
+				// echo "Access not granted!";
+				$this->load->view('login');
+			}
+	}
+
+
+
+
+	public function check_data(){
+
+
+		$this->form_validation->set_rules('email', 'Email', 'required|callback_login_check');
+		$this->form_validation->set_rules('password', 'Password', 'required');
+
+		if ($this->form_validation->run() == FALSE)
+		{
+				 //$this->login();
+				 //$this->load->view('login');
+				$this->session->set_flashdata('message', 'Incorrect User ID or Password');
+				 //$this->session->set_tempdata('item','item-value',5);
+				 redirect(welcome/login);
+		}
+		else
+		{
+			// $sess_data = array('email' => $this->input->post('email'),
+			// 'currently_logged_in' => 1);
+		// $this->session->set_userdata($sess_data);
+		// print_r($sess_data);
+		// $this->data();
+		redirect(welcome/data);
+		}
+}
+
+	public function login_check(){
+		$data_value = array('email' => $this->input->post('email'),
+		'pwd' => $this->input->post('password')
+	 );
+		if($this->report->check_login($data_value)==TRUE){
+			$sess_data = array('email' => $this->input->post('email'),
+			'currently_logged_in' => 1);
+				$this->session->set_userdata($sess_data);
+print_r($sess_data);
+
+			return true;
+		}
+		else {
+			$this->form_validation->set_message('login_check', "Incorrect username/password");
+			return false;
+		}
+}
+
+
 	public function data()
 	{
 		//$data['tests']=$this->report->get_records();
 		//print_r($data);
 	//	$this->load->view('dashboard', $data);
 		$this->load->view('dashboard');
-
 	}
 
 	public function get_data(){
@@ -68,5 +131,13 @@ class Welcome extends CI_Controller {
 		//print_r($data);
 		//echo json_encode($data);
 		}
+
+		public function logout()
+    {
+        $this->session->sess_destroy();
+      redirect(welcome/login);
+    }
+
+
 
 }

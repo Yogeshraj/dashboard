@@ -87,7 +87,17 @@ $('.point').click(function() {
     $(".drop-down").toggle();
 })
 
+$( document ).on( 'click', function ( e ) {
+    if ( $( e.target ).closest(".point").length === 0 ) {
+        $(".drop-down").hide();
+    }
+});
 
+$( document ).on( 'keydown', function ( e ) {
+    if ( e.keyCode === 27 ) {
+        $(".drop-down").hide();
+    }
+});
 
 
 

@@ -113,6 +113,7 @@ height: 100%;
 top: 0;
 left: 0;
 display: none;
+z-index: 9999999;
 }
 .add{
 color: #000;
@@ -162,7 +163,7 @@ padding-top: 70%;
 color: #ffffff;
 font-size: 30px;
 }
-input[type="date"], input[type="text"], input[type="time"], option, select {
+input[type="email"], input[type="password"], input[type="date"], input[type="text"], input[type="time"], option, select {
 padding: 10px;
 margin: 10px;
 outline: 0;
@@ -287,4 +288,22 @@ label:hover{
   border-right: 10px solid transparent;
   border-bottom: 10px solid #db2b64;
   clear: both;
+}
+/*Login Page*/
+.container-fluid{
+  width: 100%;
+  min-height: 80vh;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  position: relative;
+  z-index: 1;
 }

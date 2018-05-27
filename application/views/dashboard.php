@@ -1,18 +1,39 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 ?>
-<!DOCTYPE html>
-<html lang="en">
-	<head>
-		<meta charset="utf-8">
-		<title>CS WEB Dashboard</title>
-		<link rel="stylesheet" href="<?php echo base_url();?>/assests/css/demo.css" type="text/css" />
-		<link rel="stylesheet" href="<?php echo base_url();?>/assests/font-awesome/css/font-awesome.min.css" />
-		<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.16/css/jquery.dataTables.css">
-		<link rel="stylesheet" href="<?php echo base_url();?>/assests/css/style.css" type="text/css" />
-	</head>
-	<body>
-<?php include('header.php'); ?>
+
+<?php require('header.php'); ?>
+<div class="header" id="head">
+  <div class="container">
+    <div class="logo">
+      <img src="<?php echo base_url();?>/assests/images/logo.png" alt="logo">
+    </div>
+    <div class="menu">
+      <div class="info">
+        <h2>CS WEB Team</h2>
+        <p>Yogesh Raj</p>
+      </div>
+      <div class="point">
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+      </div>
+      <div class="drop-down">
+        <ul class="drop">
+          <li><a href="">Profile</a></li>
+          <li><a href="">Privacy</a></li>
+          <li><a href="">Settings</a></li>
+          <li><a href="<?php echo base_url();?>welcome/logout">Logout</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="banner">
+  <img src="<?php echo base_url();?>/assests/images/banner.jpg" alt="banner" width="100%">
+  <div class="sun_rise"><img src="<?php echo base_url();?>/assests/images/sun_rise.svg" alt="sun rise"><p><?php echo date('h:i A', strtotime(date_sunrise(time(), SUNFUNCS_RET_STRING, 13.0833, 80.2833, 90, 5.30)));?></p></div>
+  <div class="sun_set"><img src="<?php echo base_url();?>/assests/images/sun_set.svg" alt="sun set"><p><?php echo date('h:i A', strtotime(date_sunset(time(), SUNFUNCS_RET_STRING, 13.0833, 80.2833, 90, 5.30))); ?></p></div>
+</div>
 		<div class="section2">
 			<div class="container">
 				<div  class="circle" id="circle">
@@ -55,9 +76,4 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <!--Desinged and developed by Yogesh Raj -->
 
 
-
-<script  src="https://code.jquery.com/jquery-3.2.1.min.js"  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="  crossorigin="anonymous"></script>
-<script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
-<script  type="text/javascript" src="<?php echo base_url();?>/assests/js/script.js"></script>
-</body>
-</html>
+		<?php require('footer.php'); ?>
